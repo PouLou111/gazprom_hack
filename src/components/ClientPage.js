@@ -1,40 +1,49 @@
 import React, { useState } from 'react';
-import { Button, Typography, Container } from '@mui/material';
-import ImageGallery from './ImageGallery';
-import axios from 'axios';
 
-const ClientPage = ({ clientData }) => {
-  const [selectedImage, setSelectedImage] = useState(null);
+const ClientPage = ({ clientInfo, onLogout }) => {
+  const [images, setImages] = useState(clientInfo.images);
 
-  const handleImageSelect = (image) => {
-    setSelectedImage(image);
-  };
+  const handleGenerateClick = () => {
+    fetch(`http://localhost:8080/generateImages?id=${clientInfo.id}&format=${clientInfo.format}&channel=${clientInfo.channel}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+      setImages(data.images);
+    })
+    .catch(() => console.error('Error fetching images'));
 
-  const handleSaveImage = async () => {
-    try {
-      await axios.post(`http://localhost:8080/client/${clientData.id}/save`, { image: selectedImage });
-      alert('Image saved successfully!');
-    } catch (error) {
-      console.error(error);
-    }
+    // // Для тестирования
+    // const mockImages = [
+    //   'image1.jpg',
+    //   'image2.jpg',
+    //   'image3.jpg',
+    //   'image4.jpg'
+    // ];
+    // setImages(mockImages);
   };
 
   return (
-    <Container className="client-page">
-      <Typography variant="h5">Client ID: {clientData.id}</Typography>
-      <ImageGallery images={clientData.images} onSelect={handleImageSelect} />
-      {selectedImage && (
-        <Button variant="contained" color="primary" onClick={handleSaveImage}>
-          Save Selected Image
-        </Button>
-      )}
-      <Button variant="contained" color="secondary" onClick={() => window.location.reload()}>
-        Select Another Client
-      </Button>
-      <Button variant="contained" color="default" onClick={() => window.location.href = '/'}>
-        Logout
-      </Button>
-    </Container>
+    <div className="client-page">
+      <h2>Client Page</h2>
+      <div>ID: {clientInfo.id}</div>
+      <div>Gender: {clientInfo.gender}</div>
+      <div>Age: {clientInfo.age}</div>
+      <div>Image Format: {clientInfo.format}</div>
+      <div>Communication Channel: {clientInfo.channel}</div>
+      <button onClick={handleGenerateClick}>Generate Images</button>
+      <div className="images">
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={`/images/${image}`} // Обновите путь в зависимости от реального расположения изображений
+            alt={`Client ${clientInfo.id}`}
+            className="client-image"
+          />
+        ))}
+      </div>
+      <button onClick={onLogout}>Logout</button>
+    </div>
   );
 };
 

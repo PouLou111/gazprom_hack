@@ -1,56 +1,59 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Typography } from '@mui/material';
-import axios from 'axios';
 
-const Auth = () => {
+const Auth = ({ onAuthSuccess }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    // if (login.length > 80 || password.length > 25) {
-    //   setError('Login or password exceeds maximum length.');
-    //   return;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic ' + btoa(`${login}:${password}`));
+    
+    fetch('http://localhost:8080/login/password', {
+      method: 'HEAD',
+      headers: headers
+    })
+    .then(response => {
+      if (response.ok) {
+        onAuthSuccess();
+      } else {
+        setError('Invalid login or password');
+      }
+    })
+    .catch(() => setError('Server error'));
+
+    // // Для тестирования
+    // if (login === 'test' && password === 'password') {
+    //   onAuthSuccess();
+    // } else {
+    //   setError('Invalid login or password');
     // }
-
-    // try {
-    //   // Симулируем успешную авторизацию
-    //   await axios.head(`http://localhost:8080/login/password`, { auth: { username: login, password: password } });
-    //   navigate('/dashboard');
-    // } catch (err) {
-    //   setError('Invalid login or password.');
-    // }
-    // Симулируем успешную авторизацию
-    navigate('/dashboard');
-
   };
 
   return (
     <div className="auth-container">
-      <Typography variant="h4" gutterBottom>Login</Typography>
-      <TextField
-        className="form-field"
-        label="Login"
-        value={login}
-        onChange={(e) => setLogin(e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        className="form-field"
-        label="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-      {error && <Typography className="error-message">{error}</Typography>}
-      <Button variant="contained" color="primary" onClick={handleLogin}>
-        Login
-      </Button>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        {error && <div className="error">{error}</div>}
+        <input
+          type="text"
+          placeholder="Login"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
+          maxLength={80}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          maxLength={25}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 };
