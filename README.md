@@ -36,15 +36,15 @@ cd <директория_репозитория>
 Рекомендуется использовать виртуальное окружение для управления зависимостями проекта.
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # Для Windows используйте `venv\Scripts\activate`
 ```
 Шаг 3: Установите необходимые зависимости
 
-Используйте pip для установки зависимостей.
+Используйте pip3 для установки зависимостей.
 
 ```bash
-pip install fastapi asyncpg pydantic uvicorn diffusers
+pip3 install fastapi univcorm requests diffusers torch asyncpg backgroundremover transformers accelerate xformers
 ```
 
 Шаг 5: Запустите приложение
