@@ -5,51 +5,30 @@ import ClientPage from './components/ClientPage';
 import './styles.css';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [clientData, setClientData] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [clientInfo, setClientInfo] = useState(null);
 
-  const handleLogin = (loginData) => {
-    // Закомментируйте этот блок для имитации запроса на сервер
-    /*
-    fetch(`http://localhost:8080/login`, {
-      method: 'HEAD',
-      headers: {
-        'Authorization': `Basic ${btoa(`${loginData.login}:${loginData.password}`)}`
-      }
-    }).then(response => {
-      if (response.ok) {
-        setIsAuthenticated(true);
-      } else {
-        alert('Invalid credentials');
-      }
-    });
-    */
-    // Имитация успешной аутентификации для демонстрации
-    setIsAuthenticated(true);
-  };
-
-  const handleClientDataSubmit = (clientData) => {
-    // Убедитесь, что массив images содержит правильные имена файлов
-    const updatedClientData = {
-      ...clientData,
-      images: ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg'],
-    };
-    setClientData(updatedClientData);
+  const handleAuthSuccess = () => {
+    setAuthenticated(true);
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false);
-    setClientData(null);
+    setAuthenticated(false);
+    setClientInfo(null);
+  };
+
+  const handleClientInfoReceived = (info) => {
+    setClientInfo(info);
   };
 
   return (
     <div className="app">
-      {!isAuthenticated ? (
-        <Auth onLogin={handleLogin} />
-      ) : !clientData ? (
-        <ClientForm onSubmit={handleClientDataSubmit} />
+      {!authenticated ? (
+        <Auth onAuthSuccess={handleAuthSuccess} />
+      ) : clientInfo ? (
+        <ClientPage clientInfo={clientInfo} onLogout={handleLogout} />
       ) : (
-        <ClientPage clientData={clientData} onLogout={handleLogout} />
+        <ClientForm onClientInfoReceived={handleClientInfoReceived} />
       )}
     </div>
   );
