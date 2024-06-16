@@ -1,71 +1,48 @@
-# Getting Started with Create React App
+## Frontend для Сервиса Генерации Персонализированных Маркетинговых Предложений
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Описание
 
-## Available Scripts
+Этот проект представляет собой frontend часть сервиса для генерации персонализированных маркетинговых изображений. Сервис позволяет вводить данные клиентов и на 
+основании этих данных генерировать маркетинговые изображения, которые соответствуют потребностям клиентов. Приложение предоставляет интуитивно понятный интерфейс 
+для взаимодействия с пользователями и включает функциональность аутентификации, ввода данных клиентов, генерации изображений и навигации между страницами.
 
-In the project directory, you can run:
+### Основные возможности
 
-### `npm start`
+- Аутентификация пользователей: Пользователи могут авторизоваться для использования сервиса.
+- Ввод данных клиентов: Пользователи могут вводить ID клиента, канал связи и формат изображения.
+- Отображение данных клиента: После ввода данных отображается информация о клиенте, включая ID, гендер и тип продукта.
+- Генерация изображений: Пользователи могут генерировать изображения на основе введенных данных.
+- Навигация: Пользователи могут выйти из системы (logout).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Техническая реализация
+Система реализует аутентификацию и авторизацию пользователей. Данные пользователя передаются в заголовке запроса, что обеспечивает безопасность и простоту 
+взаимодействия с API.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Запросы и ответы API включают несколько типов операций:
+- Авторизация осуществляется с помощью GET-запроса на /authorize с заголовком authorization: base64.
+- Запрос информации по клиенту выполняется с помощью GET-запроса на /info с телом запроса { "id": client_id }. Запрос изображения осуществляется с помощью GET-
+запроса на /image с телом запроса { "id": client_id }.
+- Закрытие сервера выполняется с помощью POST-запроса на /shutdown.
 
-### `npm test`
+Веб-интерфейс предоставляет пользователю удобный способ ввода данных клиента и генерации изображений. Пользователь вводит данные клиента (ID клиента,  формат 
+изображения, канал для связи), после чего на основании введенных данных система генерирует изображения и отображает информацию о клиенте: ID клиента, гендер, канал 
+связи, размер изображения. Нажатие на кнопку "Генерация изображений" отправляет данные на сервер и отображает сгенерированные изображения на экране. Пользователь 
+может вернуться назад для ввода других данных при авторизации.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Пример использования
 
-### `npm run build`
+### Авторизация :book:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![image](https://github.com/PouLou111/gazprom_hack/assets/116022974/f65cf8d5-7371-4a1b-9d04-320acfc4d718)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Ввод данных клиента :cat: :incoming_envelope:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![image](https://github.com/PouLou111/gazprom_hack/assets/116022974/f33df893-1d48-4069-ba4f-5fe89170b614)
 
-### `npm run eject`
+### Генерация изображений :computer: 🖼️
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1.
+![image](https://github.com/PouLou111/gazprom_hack/assets/116022974/006f86a8-c21d-4879-92b4-0019bbd82c05)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# gazprom_hack
+2.
+![image](https://github.com/PouLou111/gazprom_hack/assets/116022974/9e14070f-fb87-4fe0-8de8-d2e47ce825e4)
