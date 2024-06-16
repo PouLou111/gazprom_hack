@@ -5,7 +5,6 @@ int main(int argc, char **argv)
 {
     try
     {
-        // Check command line arguments.
         if(argc != 3)
         {
             std::cerr << "Usage: " << argv[0] << " <address> <port>\n";
@@ -17,17 +16,19 @@ int main(int argc, char **argv)
         }
 
         auto const address = net::ip::make_address(argv[1]);
-        unsigned short port = static_cast<unsigned short>(std::atoi(argv[2]));
+        auto port = static_cast<unsigned short>(std::atoi(argv[2]));
 
         net::io_context ioc{1};
 
         tcp::acceptor acceptor{ioc, {address, port}};
         tcp::socket socket{ioc};
-        http_server(acceptor, socket);
+
+        database_manager manager("db_name", "user", "password", "127.0.0.1", 5432);
+        http_server(acceptor, socket, manager);
 
         ioc.run();
     }
-    catch(std::exception const &e)
+    catch (std::exception const &e)
     {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;

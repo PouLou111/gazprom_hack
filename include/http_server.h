@@ -12,6 +12,8 @@
 #include <memory>
 #include <string>
 
+#include "database_manager.h"
+
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
 namespace net = boost::asio;            // from <boost/asio.hpp>
@@ -22,7 +24,7 @@ class http_connection final:
 {
 
 public:
-    explicit http_connection(tcp::socket socket);
+    explicit http_connection(tcp::socket socket, database_manager &manager);
 
 public:
     void start();
@@ -40,9 +42,9 @@ private:
     http::request<http::dynamic_body> m_request;
     http::response<http::dynamic_body> m_response;
     net::steady_timer m_deadline{m_socket.get_executor(), std::chrono::seconds(60)};
-
+    database_manager &m_manager;
 };
 
-void http_server(tcp::acceptor &acceptor, tcp::socket &socket);
+void http_server(tcp::acceptor &acceptor, tcp::socket &socket, database_manager &manager);
 
 #endif //HACK_BACK_HTTP_SERVER_H

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="gazprom_hack_backend"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\usr\local\lib\cmake\Boost-1.74.0\;CMake Files\..\..\..\..\usr\local\lib\cmake\boost_headers-1.74.0\;CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.74.0\;CMake Files\..\..\..\..\usr\local\lib\cmake\boost_thread-1.74.0\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\cmake\;CMake Files\..\..\..\..\usr\lib\cmake\nlohmann_json\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gazprom_hack_backend">
+				<Option output="/mnt/c/dev/hack_back/libgazprom_hack_backend.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add option="-DBOOST_THREAD_DYN_LINK"/>
+					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
+					<Add option="-DJSON_DIAGNOSTICS=0"/>
+					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/postgresql"/>
+					<Add directory="/mnt/c/dev/hack_back/include"/>
+					<Add directory="/mnt/c/dev/hack_back/./include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 gazprom_hack_backend"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gazprom_hack_backend/fast">
+				<Option output="/mnt/c/dev/hack_back/libgazprom_hack_backend.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add option="-DBOOST_THREAD_DYN_LINK"/>
+					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
+					<Add option="-DJSON_DIAGNOSTICS=0"/>
+					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/postgresql"/>
+					<Add directory="/mnt/c/dev/hack_back/include"/>
+					<Add directory="/mnt/c/dev/hack_back/./include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 gazprom_hack_backend/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server">
+				<Option output="/mnt/c/dev/hack_back/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add option="-DBOOST_THREAD_DYN_LINK"/>
+					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
+					<Add option="-DJSON_DIAGNOSTICS=0"/>
+					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/postgresql"/>
+					<Add directory="/mnt/c/dev/hack_back/include"/>
+					<Add directory="/mnt/c/dev/hack_back/./include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 server"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server/fast">
+				<Option output="/mnt/c/dev/hack_back/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add option="-DBOOST_THREAD_DYN_LINK"/>
+					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
+					<Add option="-DJSON_DIAGNOSTICS=0"/>
+					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/postgresql"/>
+					<Add directory="/mnt/c/dev/hack_back/include"/>
+					<Add directory="/mnt/c/dev/hack_back/./include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 server/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client">
+				<Option output="/mnt/c/dev/hack_back/client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add option="-DBOOST_THREAD_DYN_LINK"/>
+					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
+					<Add option="-DJSON_DIAGNOSTICS=0"/>
+					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/postgresql"/>
+					<Add directory="/mnt/c/dev/hack_back/include"/>
+					<Add directory="/mnt/c/dev/hack_back/./include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 client"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client/fast">
+				<Option output="/mnt/c/dev/hack_back/client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add option="-DBOOST_SYSTEM_DYN_LINK"/>
+					<Add option="-DBOOST_THREAD_DYN_LINK"/>
+					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
+					<Add option="-DJSON_DIAGNOSTICS=0"/>
+					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/postgresql"/>
+					<Add directory="/mnt/c/dev/hack_back/include"/>
+					<Add directory="/mnt/c/dev/hack_back/./include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 client/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/dev/hack_back"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/mnt/c/dev/hack_back/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/dev/hack_back/client.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/server.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/src/database_manager.cpp">
+			<Option target="gazprom_hack_backend"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/src/http_server.cpp">
+			<Option target="gazprom_hack_backend"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/BoostDetectToolset-1.74.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/Boost-1.74.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\Boost-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/Boost-1.74.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\Boost-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_headers-1.74.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_headers-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_headers-1.74.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_headers-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_system-1.74.0/boost_system-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_system-1.74.0/boost_system-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_system-1.74.0/libboost_system-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_system-1.74.0/libboost_system-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_system-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_thread-1.74.0/boost_thread-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_thread-1.74.0/boost_thread-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_thread-1.74.0/libboost_thread-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/local/lib/cmake/boost_thread-1.74.0/libboost_thread-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\boost_thread-1.74.0\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/lib/cmake/nlohmann_json/nlohmann_jsonConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\nlohmann_json\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/lib/cmake/nlohmann_json/nlohmann_jsonConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\nlohmann_json\"/>
+		</Unit>
+		<Unit filename="/mnt/c/dev/hack_back/../../../../usr/lib/cmake/nlohmann_json/nlohmann_jsonTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\nlohmann_json\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
