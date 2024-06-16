@@ -24,7 +24,6 @@ PostgreSQL база данных
 * asyncpg
 * pydantic
 * uvicorn
-* diffusers
 
 ### Установка
 Шаг 1: Клонируйте репозиторий
