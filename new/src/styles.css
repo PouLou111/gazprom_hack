@@ -1,0 +1,62 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #5e70c9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.app {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.auth-container, .client-form-container, .client-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-form, .client-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.auth-form h2, .client-form h2, .client-page h2 {
+  margin-bottom: 20px;
+}
+
+.auth-form input, .client-form input, .client-form select {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.images {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.client-image {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.client-image:hover {
+  border: 2px solid #1976d2;
+}
