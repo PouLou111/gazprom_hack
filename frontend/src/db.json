@@ -1,0 +1,13 @@
+{
+    "clients": [
+      {
+        "id": "1",
+        "images": ["placeholder1.jpg", "placeholder2.jpg", "placeholder3.jpg", "placeholder4.jpg"]
+      },
+      {
+        "id": "2",
+        "images": ["placeholder1.jpg", "placeholder2.jpg", "placeholder3.jpg", "placeholder4.jpg"]
+      }
+    ]
+  }
+  
