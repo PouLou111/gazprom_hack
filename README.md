@@ -1,4 +1,4 @@
-## Веб-приложение находится в папке frontend
+## Веб-приложение находится в папке [frontend](../main/frontend)frontend
 ---
 ## Backend в папке backend
 
