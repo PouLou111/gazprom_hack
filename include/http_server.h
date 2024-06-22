@@ -37,6 +37,7 @@ private:
     void create_response();
     void write_response();
     void check_deadline();
+    void handle_exception(http::status status, char const *what);
 
 private:
     inline std::string at(http::field field) const;

@@ -12,6 +12,11 @@ std::string database_manager::commit(std::string const &query)
     auto query_result = transaction.exec(query);
     transaction.commit();
 
+    if (query_result.empty())
+    {
+        throw std::runtime_error("User not found");
+    }
+
     nlohmann::json json_result;
     for (auto const &row: query_result)
     {

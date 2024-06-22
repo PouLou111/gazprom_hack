@@ -68,36 +68,44 @@ void http_connection::create_response()
         }
         catch (std::exception const &exception)
         {
-            std::cout << exception.what();
-            m_response.result(http::status::not_found);
-            m_response.set(http::field::content_type, "text/plain");
-            beast::ostream(m_response.body()) << "user not found";
+            handle_exception(http::status::not_found, exception.what());
         }
     }
     else if (target == "/image")
     {
-        auto images_address = execute_python(std::string("python3 script.py " + at(http::field::body)).c_str());
-        m_response.set(http::field::content_type, "text/plain");
-        beast::ostream(m_response.body()) << images_address;
+        try
+        {
+            auto images_address = execute_python(std::string("python3 script.py " + at(http::field::body)).c_str());
+            m_response.set(http::field::content_type, "text/plain");
+            beast::ostream(m_response.body()) << images_address;
+        }
+        catch (std::exception const &exception)
+        {
+            handle_exception(http::status::internal_server_error, exception.what());
+        }
     }
     else if (target == "/info")
     {
-        std::string json = m_manager->commit("SELECT * FROM clients WHERE id=" + at(http::field::body) + ";");
-        m_response.set(http::field::content_type, "application/json");
-        beast::ostream(m_response.body()) << json;
+        try
+        {
+            auto json = m_manager->commit("SELECT * FROM clients WHERE id=" + at(http::field::body) + ";");
+            m_response.set(http::field::content_type, "application/json");
+            beast::ostream(m_response.body()) << json;
+        }
+        catch (std::exception const &exception)
+        {
+            handle_exception(http::status::internal_server_error, exception.what());
+        }
     }
     else
     {
-        m_response.result(http::status::not_found);
-        m_response.set(http::field::content_type, "text/plain");
-        beast::ostream(m_response.body()) << "target not found";
+        handle_exception(http::status::not_found, "target not found");
     }
 }
 
 void http_connection::write_response()
 {
     auto self = shared_from_this();
-
     http::async_write(
         m_socket,
         m_response,
@@ -111,7 +119,6 @@ void http_connection::write_response()
 void http_connection::check_deadline()
 {
     auto self = shared_from_this();
-
     m_deadline.async_wait(
         [self](beast::error_code ec)
         {
@@ -120,6 +127,14 @@ void http_connection::check_deadline()
                self->m_socket.close(ec);
            }
         });
+}
+
+void http_connection::handle_exception(http::status status, char const *what)
+{
+    std::cout << what;
+    m_response.result(status);
+    m_response.set(http::field::content_type, "text/plain");
+    beast::ostream(m_response.body()) << what;
 }
 
 std::string http_connection::at(http::field field) const
