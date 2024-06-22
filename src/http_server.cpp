@@ -1,6 +1,6 @@
 #include "../include/http_server.h"
 
-http_connection::http_connection(tcp::socket socket, database_manager &manager):
+http_connection::http_connection(tcp::socket socket, std::shared_ptr<database_manager> const &manager):
     m_socket(std::move(socket)), m_manager(manager)
 {
 
@@ -38,25 +38,18 @@ void http_connection::process_request()
     if (m_request.method() == http::verb::get)
     {
         m_response.result(http::status::ok);
-        m_response.set(http::field::server, "beast");
+        m_response.set(http::field::server, BOOST_BEAST_VERSION_STRING);
         create_response();
     }
     else if (m_request.method() == http::verb::post && m_request.target() == "/shutdown")
     {
-        m_response.result(http::status::ok);
-        m_response.set(http::field::content_type, "text/plain");
-        beast::ostream(m_response.body()) << "Server is shutting down...";
-        write_response();
         std::exit(0);
     }
     else
     {
         m_response.result(http::status::bad_request);
         m_response.set(http::field::content_type, "text/plain");
-        beast::ostream(m_response.body())
-                << "Invalid request-method '"
-                << std::string(m_request.method_string())
-                << "'";
+        beast::ostream(m_response.body()) << "Invalid request-method '" << std::string(m_request.method_string()) << "'";
     }
     write_response();
 }
@@ -68,14 +61,14 @@ void http_connection::create_response()
     {
         try
         {
-            auto const base64_view = m_request.at(http::field::authorization);
-            auto const base64_string = std::string(base64_view.begin(), base64_view.end());
-            std::string json = m_manager.get_from("users", "key", base64_string);
+            auto decoded = decode_base64();
+            std::string json = m_manager->commit(std::string("SELECT * FROM users WHERE login='" + decoded.first + "' AND password='" + decoded.second + "\';"));
             m_response.set(http::field::content_type, "application/json");
             beast::ostream(m_response.body()) << json;
         }
         catch (std::exception const &exception)
         {
+            std::cout << exception.what();
             m_response.result(http::status::not_found);
             m_response.set(http::field::content_type, "text/plain");
             beast::ostream(m_response.body()) << "user not found";
@@ -83,23 +76,13 @@ void http_connection::create_response()
     }
     else if (target == "/image")
     {
-        auto const json_view = m_request.at(http::field::body);
-        std::string json_string(json_view.begin(), json_view.end());
-        nlohmann::json json(json_string);
-
-        // python
-
-        std::string images_address;
+        auto images_address = execute_python(std::string("python3 script.py " + at(http::field::body)).c_str());
         m_response.set(http::field::content_type, "text/plain");
         beast::ostream(m_response.body()) << images_address;
     }
     else if (target == "/info")
     {
-        auto const id_view = m_request.at(http::field::body);
-        std::string id_string(id_view.begin(), id_view.end());
-        unsigned int id = std::stoul(id_string);
-
-        std::string json = m_manager.get_from("clients", "id", id);
+        std::string json = m_manager->commit("SELECT * FROM clients WHERE id=" + at(http::field::body) + ";");
         m_response.set(http::field::content_type, "application/json");
         beast::ostream(m_response.body()) << json;
     }
@@ -139,7 +122,43 @@ void http_connection::check_deadline()
         });
 }
 
-void http_server(tcp::acceptor &acceptor, tcp::socket &socket, database_manager &manager)
+std::string http_connection::at(http::field field) const
+{
+    auto view = m_request.at(field);
+    return {view.begin(), view.end()};
+}
+
+std::pair<std::string, std::string> http_connection::decode_base64() const
+{
+    auto base64 = at(http::field::authorization);
+    std::string login_password;
+    login_password.resize(beast::detail::base64::decoded_size(base64.size()) - 1);
+    beast::detail::base64::decode(&login_password[0], base64.c_str(), base64.size());
+    auto delimiter_position = login_password.find(':');
+
+    return std::make_pair(login_password.substr(0, delimiter_position), login_password.substr(delimiter_position + 1));
+}
+
+std::string http_connection::execute_python(char const *cmd)
+{
+    std::array<char, 128> buffer{};
+    std::string result;
+
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+    if (pipe == nullptr)
+    {
+        throw std::runtime_error("popen() failed!");
+    }
+
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr)
+    {
+        result += buffer.data();
+    }
+
+    return result;
+}
+
+void http_server(tcp::acceptor &acceptor, tcp::socket &socket, std::shared_ptr<database_manager> const &manager)
 {
     acceptor.async_accept(
         socket,

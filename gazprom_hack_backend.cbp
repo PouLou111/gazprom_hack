@@ -29,7 +29,7 @@
 					<Add option="-DBOOST_THREAD_DYN_LINK"/>
 					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
 					<Add option="-DJSON_DIAGNOSTICS=0"/>
-					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/libpqxx"/>
 					<Add directory="/usr/include/postgresql"/>
 					<Add directory="/mnt/c/dev/hack_back/include"/>
 					<Add directory="/mnt/c/dev/hack_back/./include"/>
@@ -53,7 +53,7 @@
 					<Add option="-DBOOST_THREAD_DYN_LINK"/>
 					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
 					<Add option="-DJSON_DIAGNOSTICS=0"/>
-					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/libpqxx"/>
 					<Add directory="/usr/include/postgresql"/>
 					<Add directory="/mnt/c/dev/hack_back/include"/>
 					<Add directory="/mnt/c/dev/hack_back/./include"/>
@@ -77,7 +77,7 @@
 					<Add option="-DBOOST_THREAD_DYN_LINK"/>
 					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
 					<Add option="-DJSON_DIAGNOSTICS=0"/>
-					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/libpqxx"/>
 					<Add directory="/usr/include/postgresql"/>
 					<Add directory="/mnt/c/dev/hack_back/include"/>
 					<Add directory="/mnt/c/dev/hack_back/./include"/>
@@ -101,7 +101,7 @@
 					<Add option="-DBOOST_THREAD_DYN_LINK"/>
 					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
 					<Add option="-DJSON_DIAGNOSTICS=0"/>
-					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/libpqxx"/>
 					<Add directory="/usr/include/postgresql"/>
 					<Add directory="/mnt/c/dev/hack_back/include"/>
 					<Add directory="/mnt/c/dev/hack_back/./include"/>
@@ -125,7 +125,7 @@
 					<Add option="-DBOOST_THREAD_DYN_LINK"/>
 					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
 					<Add option="-DJSON_DIAGNOSTICS=0"/>
-					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/libpqxx"/>
 					<Add directory="/usr/include/postgresql"/>
 					<Add directory="/mnt/c/dev/hack_back/include"/>
 					<Add directory="/mnt/c/dev/hack_back/./include"/>
@@ -149,7 +149,7 @@
 					<Add option="-DBOOST_THREAD_DYN_LINK"/>
 					<Add option="-DJSON_USE_IMPLICIT_CONVERSIONS=1"/>
 					<Add option="-DJSON_DIAGNOSTICS=0"/>
-					<Add directory="/usr/include/pqxx"/>
+					<Add directory="/usr/include/libpqxx"/>
 					<Add directory="/usr/include/postgresql"/>
 					<Add directory="/mnt/c/dev/hack_back/include"/>
 					<Add directory="/mnt/c/dev/hack_back/./include"/>

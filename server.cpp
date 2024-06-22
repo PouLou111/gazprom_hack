@@ -23,7 +23,7 @@ int main(int argc, char **argv)
         tcp::acceptor acceptor{ioc, {address, port}};
         tcp::socket socket{ioc};
 
-        database_manager manager("db_name", "user", "password", "127.0.0.1", 5432);
+        auto manager = database_manager::get_manager("gazprom_hack", "postgres", "1234", 5432);
         http_server(acceptor, socket, manager);
 
         ioc.run();
